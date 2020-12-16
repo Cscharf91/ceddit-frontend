@@ -12,7 +12,6 @@ const Comment = (props) => {
     fetchUser();
     const listComm = props.comment.children.length > 0 ? [...props.comment.children] : null;
     if (listComm) {
-      console.log("nested comments: ", listComm);
       setNestedComments(listComm);
     }
   }, []);

@@ -27,7 +27,6 @@ const App = () => {
     try {
       const data = await Axios.get('http://localhost:5000/api/posts');
       setPosts(data.data);
-      console.log(data.data);
     } catch(err) {
       console.log(err);
     }

@@ -7,6 +7,7 @@ import './post.css';
 import ChatIcon from '@material-ui/icons/Chat';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
+import moment from 'moment';
 
 const Post = (props) => {
   document.body.style.background = "#2e2f2f";
@@ -19,8 +20,8 @@ const Post = (props) => {
   
   const getPost = async () => {
     const data = await Axios.get(`http://localhost:5000/api/posts/${props.match.params.id}`);
+    console.log("post data:", data.data);
     setPost(data.data);
-    console.log(data.data.comments);
     setComments(data.data.comments);
   }
   const commentList = comments.map((comment) => {
@@ -28,7 +29,7 @@ const Post = (props) => {
   });
 
   return (
-    <div className="post-wrapper">
+    <div className="post-wrapper min-height">
       <div className="post-info-header">
         <div className="post-header-title">
           <ChatIcon fontSize="small" />
@@ -38,9 +39,9 @@ const Post = (props) => {
       <div className="post-content">
         <div className="post-op">
           <div className="op-header">
-            <p className="sub-label">c/random</p>
+            <p className="sub-label">c/{post && post.zone ? post.zone.name : null}</p>
             {post && <p className="op-header-light">Posted by {post.user.username}</p>} 
-            <p className="op-header-light">2 days ago</p>
+            <p className="op-header-light">{post && moment(post.date).format('MMMM Do YYYY')}</p>
           </div>
           <div className="op-votes-title">
             <div className="votes">

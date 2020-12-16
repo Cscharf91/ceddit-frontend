@@ -2,8 +2,11 @@
   width: 58%;
   margin: auto;
   background: #dae0e6;
-  min-height: 100vh;
   margin-top: 51px;
+}
+
+.min-height {
+  min-height: 100vh;
 }
 
 .post-info-header {
