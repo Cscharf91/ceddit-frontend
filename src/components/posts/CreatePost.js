@@ -1,6 +1,8 @@
 import React from 'react';
 
 const CreatePost = (props) => {
+  document.body.style.background = "#dae0e6";
+
   if (props.user) {
       return (
       <form onSubmit={props.handlePostSubmit} className="post-form">

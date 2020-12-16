@@ -2,6 +2,8 @@ import React from 'react';
 import PostDisplay from './PostDisplay';
 
 const Posts = (props) => {
+  document.body.style.background = "#dae0e6";
+  
   const postList = () => {
     return props.posts.map(post => {
       return <PostDisplay key={post._id} user={props.user} deletePost={props.deletePost} post={post} />

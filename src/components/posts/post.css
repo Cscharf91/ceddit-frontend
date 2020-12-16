@@ -1,0 +1,143 @@
+.post-wrapper {
+  width: 58%;
+  margin: auto;
+  background: #dae0e6;
+  min-height: 100vh;
+  margin-top: 51px;
+}
+
+.post-info-header {
+  background: #030303;
+  height: 44px;
+  color: white;
+  display: grid;
+  min-width: 58%;
+  align-items: center;
+  justify-items: center;
+  justify-content: center;
+  grid-template-columns: 1fr 1fr;
+  position: fixed;
+  top: 50;
+}
+
+.votes {
+  grid-column: 1;
+  font-size: 16px;
+  font-weight: 900;
+  display: grid;
+  justify-items: center;
+  margin-left: -30px;
+  align-items: center;
+  grid-template-rows: repeat(3, 1fr);
+}
+
+.comment-vote {
+  font-size: 16px;
+  font-weight: 900;
+  display: grid;
+  align-items: center;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: 1fr 15fr;
+}
+
+.upvote-count {
+  margin-left: 2px;
+  grid-row: 2;
+  grid-column: 1;
+}
+
+.comment-user {
+  text-decoration: 900;
+  font-size: 16px;
+  grid-column: 2;
+  grid-row: 2;
+}
+
+.row-3 {
+  grid-row: 3;
+}
+
+.post-header-title {
+  color: rgb(167, 167, 167);
+  justify-self: start;
+  padding-left: 100px;
+  font-size: 14px;
+  display: grid;
+  align-items: center;
+  grid-template-columns: 1fr 3fr;
+}
+
+.post-content {
+  padding-top: 70px;
+  margin: auto;
+  width: 80%;
+}
+
+.post-op {
+  background: #ffffff;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid rgb(167, 167, 167);
+}
+
+.op-header {
+  display: grid;
+  width: 45%;
+  grid-template-columns: repeat(3, auto);
+  font-size: 14px;
+}
+
+.sub-label {
+  font-weight: 900;
+}
+
+.op-header-light {
+  color: #646363;
+}
+
+.op-votes-title {
+  display: grid;
+  grid-template-columns: 1fr 15fr;
+  align-items: center;
+}
+
+.op-title {
+  font-size: 20px;
+}
+
+.op-body {
+  padding: 5px 55px;
+}
+
+.post-btn {
+  transition: 0.5s;
+  border: none;
+  border-radius: 10px;
+  color: white;
+  text-decoration: none;
+  margin: 5px;
+  margin-top: 15px;
+  padding: 5px;
+  background: rgb(3, 117, 247);
+  font-size: 15px;
+}
+
+.post-btn:hover {
+  transition: 0.5s;
+  background:  rgb(0, 36, 77);
+}
+
+.comment {
+  background: #ffffff;
+  padding: 15px;
+  margin-bottom: 20px;
+  border: 1px solid rgb(167, 167, 167);
+}
+
+.comment-body {
+  margin-left: 55px;
+  margin-top: -20px;
+  padding-bottom: 40px;
+}
+
+/* padding: 0 100px 50px 100px; */

@@ -3,4 +3,13 @@
 }
 body {
   background: #dae0e6;
+  font-family: 'Noto Sans', sans-serif;
+}
+
+.justify-self-center {
+  justify-self: center;
+}
+
+.white-bg {
+  background: white;
 }
