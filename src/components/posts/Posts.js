@@ -1,0 +1,19 @@
+import React from 'react';
+import PostDisplay from './PostDisplay';
+
+const Posts = (props) => {
+  const postList = () => {
+    return props.posts.map(post => {
+      return <PostDisplay key={post._id} user={props.user} deletePost={props.deletePost} post={post} />
+    });
+  }
+
+  return (
+    <div>
+      <h1>All Posts:</h1>
+      {postList()}
+    </div>
+  );
+}
+
+export default Posts;

@@ -1,0 +1,77 @@
+.navbar {
+  border-bottom: 1px solid #edeff1;
+  padding: 0 100px;
+  background: #ffffff;
+  min-height: 50px;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  justify-content: center;
+  align-items: center;
+}
+
+.navbar a {
+  text-decoration: none;
+  color: black;
+}
+
+.creddit-logo {
+  width: 34px;
+}
+
+.logo {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  width: 55px;
+  font-size: 18px;
+}
+
+.login-form {
+  position: absolute;
+  background: #ffffff;
+  padding: 20px;
+  width: 500px;
+  top: 20%;
+  left: 35%;
+}
+
+.login-form > * {
+  padding: 10px;
+}
+
+.login-form form {
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+
+.login-btn {
+  transition: 0.5s;
+  border: 1px solid #0079d3;
+  border-radius: 5px;
+  background: #ffffff;
+  font-size: 15px;
+  color:  #0079d3;
+  padding: 3px 10px;
+}
+
+.login-btn:hover {
+  transition: 0.5s;
+  color: #014070;
+  border: 1px solid #014070;
+}
+
+.signup-btn:hover {
+  transition: 0.5s;
+  background: #014070;
+}
+
+.signup-btn {
+  transition: 0.5s;
+  margin-left: 5px;
+  border: 1px solid #ffffff;
+  border-radius: 5px;
+  background: #0079d3;
+  font-size: 15px;
+  color:  #ffffff;
+  padding: 3px 10px;
+}
