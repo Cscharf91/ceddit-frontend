@@ -25,6 +25,7 @@ const PostDisplay = (props) => {
           <ArrowDropDownIcon className="row-3" fontSize="large" />
           <h3 className="comment-user"><Link to={`/${post._id}`}>{post.title}</Link></h3>
         </div>
+        {post && post.image && <img src={post.image} alt={`${post.title}`} className="post-image" />}
       </div>        
     </div>
   );

@@ -143,4 +143,11 @@
   padding-bottom: 40px;
 }
 
+.post-image {
+  max-width: 450px;
+  padding: 10px;
+  margin-left: 55px;
+  border: 1px solid;
+}
+
 /* padding: 0 100px 50px 100px; */

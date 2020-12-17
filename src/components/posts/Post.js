@@ -51,6 +51,7 @@ const Post = (props) => {
             </div>
             {post && <h3 className="op-title">{post.title}</h3>}
           </div>
+          {post && post.image && <img src={post.image} alt={`${post.title}`} className="post-image" />}
           {post && <p className="op-body">{post.body}</p>}
         {post && props.user && props.user.email === post.user.email && <button className="post-btn" onClick={() => props.deletePost(post)}>Delete</button>}
         {post && props.user && props.user.email === post.user.email && <Link className="post-btn" to={`/edit/${post._id}`}>Edit</Link>}
