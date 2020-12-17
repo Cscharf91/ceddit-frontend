@@ -1,5 +1,4 @@
-import Axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { trackPromise } from 'react-promise-tracker';
 
 const CreatePost = (props) => {
@@ -7,6 +6,7 @@ const CreatePost = (props) => {
 
   useEffect(() => {
     trackPromise(props.getZones());
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
   useEffect(() => {

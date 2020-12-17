@@ -6,7 +6,7 @@ const Posts = (props) => {
   
   const postList = () => {
     return props.posts.map(post => {
-      return <PostDisplay key={post._id} user={props.user} deletePost={props.deletePost} post={post} />
+      return <PostDisplay key={post._id} user={props.user} token={props.token} deletePost={props.deletePost} post={post} />
     });
   }
 

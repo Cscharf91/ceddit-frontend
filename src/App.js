@@ -162,6 +162,7 @@ const App = () => {
     const data = await Axios.delete(`http://localhost:5000/api/posts/${post._id}`, config);
     console.log(data);
     setPosts(posts.filter(current => current._id !== post._id))
+    window.location ='/';
   }
 
   return (
