@@ -21,8 +21,8 @@ const CreateZone = (props) => {
     }
 
     try {
-      const data = await Axios.post(`http://localhost:5000/api/zones`, { ...newZone, creator: props.user._id }, config);
-      console.log(data);
+      await Axios.post(`http://localhost:5000/api/zones`, { ...newZone, creator: props.user._id }, config);
+      window.location = '/';
     } catch (error) {
       console.log(error);
     }

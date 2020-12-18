@@ -1,6 +1,25 @@
-# Getting Started with Create React App
+# Creddit- a Reddit Clone
+This was made as a final project for The Odin Project. [Click here to view the github repo for the Express.js server API](https://github.com/Cscharf91/creddit-backend).
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
+## Features:
+
+-Create Zones (akin to Subreddits): a little section of Creddit to discuss any topic or hobby (ex: pics, pets, fitness, gaming).
+
+-Upvote and downvote comments.
+
+-Optional image upload on posts.
+
+-Nested comments
+
+## Todo:
+
+-Embedded Youtube videos and links.
+
+-User profiles.
+
+-Notifications for responses.
+
+-Mobile Responsive Design.
 
 ## Available Scripts
 

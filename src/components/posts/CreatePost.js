@@ -17,6 +17,7 @@ const CreatePost = (props) => {
             <input className="create-title" type="text" name="title" value={props.newPost.title} onChange={props.onChangePost} /><br/><br/>
             <label>Zone:</label><br/>
             <select className="create-select" name="zone" onChange={props.onChangePost} value={props.newPost.zone}>
+              <option value="">Select Zone</option>
               {props.zones.length > 0 && props.zones.map(zone => {
                 return (<option value={zone._id}>{zone.name}</option>)
               })}

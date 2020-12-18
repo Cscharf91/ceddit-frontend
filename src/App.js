@@ -13,7 +13,7 @@ const App = () => {
   const [user, setUser] = useState(null);
   const [posts, setPosts] = useState([]);
   const [currentPosts, setCurrentPosts] = useState([]);
-  const [newPost, setNewPost] = useState({ title: "", body: "", zone: "5fda628d85f4ed0d156d3839" });
+  const [newPost, setNewPost] = useState({ title: "", body: "", zone: "" });
   const [selectedFile, setSelectedFile] = useState(null);
   const [token, setToken] = useState(null);
   const [login, setLogin] = useState({ email: "", password: "" });
@@ -91,8 +91,7 @@ const App = () => {
           }
         }
         const data = await Axios.post('http://localhost:5000/api/posts', formData, config)
-        console.log(data);
-        window.location = '/';
+        window.location = `/${data.data._id}`;
       } catch(err) {
         console.log("err", err);
       }
@@ -182,6 +181,7 @@ const App = () => {
         render={props => <Posts {...props}
           user={user}
           token={token}
+          currentZone={currentZone}
           deletePost={deletePost}
           posts={currentPosts}
         />
@@ -203,6 +203,7 @@ const App = () => {
         render={props => <CreateZone {...props}
           user={user}
           token={token}
+          setCurrentZone={setCurrentZone}
         />
       }
       />

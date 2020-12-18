@@ -218,4 +218,16 @@
   width: 80%;
 }
 
+.zone-info {
+  background: #ffffff;
+  padding: 20px;
+  margin-top: 90px;
+  /* color: white; */
+  border: 1px solid #94bfcf;
+  border-radius: 10px;
+  /* text-align: center; */
+  line-height: 150%;
+  width: 20%;
+}
+
 /* padding: 0 100px 50px 100px; */
