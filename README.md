@@ -1,4 +1,4 @@
-# Creddit- a Reddit Clone
+# Creddit- A Reddit Clone
 This was made as a final project for The Odin Project. [Click here to view the github repo for the Express.js server API](https://github.com/Cscharf91/creddit-backend).
 
 ## Features:
