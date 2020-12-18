@@ -157,6 +157,10 @@
   border: 1px solid rgb(167, 167, 167);
 }
 
+.divider {
+  margin-top: 50px;
+}
+
 .comment-body {
   margin-left: 85px;
   margin-top: 30px;
@@ -214,26 +218,33 @@
   height: 30px;
 }
 
+.select-menu {
+  background: rgb(204, 204, 204);
+  border: 1px solid #646363;
+  width: 10%;
+  height: 30px;
+  text-align: center;
+}
+
 .create-txtarea {
   width: 80%;
 }
 
 .zone-info {
-  background: #ffffff;
+  background: #363636;
   padding: 20px;
-  margin-top: 90px;
-  /* color: white; */
-  border: 1px solid #94bfcf;
-  border-radius: 10px;
-  /* text-align: center; */
+  color: white;
+  text-align: center;
   line-height: 150%;
-  width: 20%;
+  width: auto;
+  font-size: 20px;
+  box-shadow: 0 10px 20px #686868;
 }
 
 li {
   transition: 0.5s;
   display: inline-block;
-  border: 1px solid;
+  /* border: 1px solid #000000; */
   border-radius: 10px;
   padding: 10px;
   margin-left: 5px;
@@ -241,5 +252,105 @@ li {
 
 li:hover, .current-page {
   transition: 0.5s;
-  background: darkgray;
+  background: #363636;
+}
+
+.login-buttons {
+  margin-left: 100px;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+  width: 80%;
+  grid-column: -1;
+}
+
+@media (max-width: 1105px) {
+  .login-buttons {
+    width: 100%;
+  }
+
+  .create-select {
+    width: 120%;
+  }
+}
+
+@media (max-width: 1005px) {
+  .logo {
+    margin-right: 100px;
+  }
+
+  .login-buttons {
+    width: 100%;
+  }
+
+  .create-select {
+    width: 150%;
+  }
+
+  .post-wrapper, .post-info-header, .post-content, .post-op {
+    width: 100%;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .post-image {
+    max-width: 300px;
+    margin-left: 0;
+    border: none;
+  }
+  .image-container {
+    max-width: 100%;
+    /* background: black; */
+    display: grid;
+    justify-content: center;
+  }
+
+  .comment-user, .op-title {
+    margin-left: 23px;
+  }
+
+  .select-menu {
+    width: 40%;
+  }
+}
+
+@media (max-width: 600px) {
+  .post-image {
+    max-width: 150px;
+  }
+
+  .navbar {
+    width: 80%;
+    margin-left: -40px;
+  }
+
+  .image-container {
+    max-width: 50%;
+    margin: auto;
+    /* background: black; */
+    display: grid;
+    justify-items: start;
+    justify-content: center;
+  }
+
+  .op-header {
+    width: auto;
+  }
+
+  .comment {
+    padding: 5px;
+  }
+
+  .login-buttons > * {
+    width: 80%;
+    display: grid;
+    align-items: center;
+    justify-content: center;
+    margin-left: -150px;
+    font-size: 12px;
+    /* grid-column: 1; */
+  }
+
+  .op-header {
+    font-size: 12px;
+  }
 }

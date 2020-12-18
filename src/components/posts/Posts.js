@@ -66,6 +66,12 @@ const Posts = (props) => {
       <div className="post-wrapper zone-info">
           <h3>{zone.name && zone.name.charAt(0).toUpperCase() + zone.name.slice(1)}</h3>
           <h5>{zone.description && zone.description}</h5>
+        <select className="select-menu" name="zone" onChange={props.changeZoneSelect} value={props.currentZone}>
+        <option value="all">All</option>
+        {props.zones.length > 0 && props.zones.map(zone => {
+          return (<option value={zone._id}>{zone.name}</option>)
+        })}
+        </select>
       </div>
       }
       {postList()}

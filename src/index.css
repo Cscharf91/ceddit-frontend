@@ -1,9 +1,10 @@
 * {
   margin: 0;
 }
-body {
+html, body {
   background: #dae0e6;
   font-family: 'Noto Sans', sans-serif;
+  overflow-x:hidden;
 }
 
 .justify-self-center {

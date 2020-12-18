@@ -107,7 +107,11 @@ const PostDisplay = (props) => {
           </div>
           <h3 className="comment-user"><Link to={`/${post._id}`}>{post.title}</Link></h3>
         </div>
-        {post && post.image && <Link to={`/${post._id}`}><img src={post.image} alt={`${post.title}`} className="post-image" /></Link>}
+        {post && post.image &&
+        <div className="image-container">
+        <Link to={`/${post._id}`}><img src={post.image} alt={`${post.title}`} className="post-image" /></Link>
+        </div>
+        }
         <br/><Link to={`/${post._id}`}><button className="post-btn">Comments</button></Link>
       </div>        
     </div>

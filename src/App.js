@@ -169,9 +169,6 @@ const App = () => {
         user={user}
         token={token}
         setUser={setUser}
-        zones={zones}
-        currentZone={currentZone}
-        changeZoneSelect={changeZoneSelect}
         setToken={setToken}
         handleLoginSubmit={handleLoginSubmit}
         onChangeLogin={onChangeLogin}
@@ -184,6 +181,9 @@ const App = () => {
           currentZone={currentZone}
           deletePost={deletePost}
           posts={currentPosts}
+          zones={zones}
+          currentZone={currentZone}
+          changeZoneSelect={changeZoneSelect}
         />
       }
       />

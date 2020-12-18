@@ -128,7 +128,7 @@ const Post = (props) => {
   }
 
   const commentList = comments.map((comment) => {
-    return <Comment user={props.user} token={props.token} nested="0" comment={comment} />
+    return <Comment user={props.user ? props.user : null} token={props.token} nested="0" comment={comment} />
   });
 
   const scrollToBottom = () => {
@@ -172,6 +172,7 @@ const Post = (props) => {
             <button className="post-btn" type="submit">Submit</button>
           </form>}
         </div>
+        {!props.user && <div className="divider"></div>}
         {commentList}
       </div>
       <div ref={messagesEnd}></div>

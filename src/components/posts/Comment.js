@@ -117,7 +117,7 @@ const Comment = (props) => {
     }
     const comment = { ...newComment, username: props.user._id, parent: e.target.className }
     const data = await Axios.post(`https://sleepy-inlet-08384.herokuapp.com/api/comments`, comment, config);
-    // setComments([...comments, data.data]);
+    setNestedComments(nestedComments ? [...nestedComments, data.data] : [data.data]);
     setNewComment({ body: "" });
     // scrollToBottom();
   }
@@ -175,10 +175,10 @@ const Comment = (props) => {
         </form>}
       </div>
       <div className="comment-actions-grid">
-        {commentUser === props.user.username && commentBody !== "<deleted>" &&
+        {props.user && commentUser === props.user.username && commentBody !== "<deleted>" &&
           <button onClick={deleteComment} className="post-btn">Delete</button>
         }
-        {props.user && !activeComment && commentBody !== "<deleted>" &&
+        {props.user && !activeComment && commentBody !== "<deleted>" && nested < 7 &&
           <button onClick={activateComment} className="post-btn">Reply</button>
         }
         </div>
