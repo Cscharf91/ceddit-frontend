@@ -11,6 +11,8 @@ This was made as a final project for The Odin Project. [Click here to view the g
 
 -Nested comments
 
+-Pagination
+
 ## Todo:
 
 -Embedded Youtube videos and links.
@@ -20,6 +22,8 @@ This was made as a final project for The Odin Project. [Click here to view the g
 -Notifications for responses.
 
 -Mobile Responsive Design.
+
+-Sort comments by upvote count.
 
 ## Available Scripts
 

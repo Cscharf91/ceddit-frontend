@@ -230,4 +230,16 @@
   width: 20%;
 }
 
-/* padding: 0 100px 50px 100px; */
+li {
+  transition: 0.5s;
+  display: inline-block;
+  border: 1px solid;
+  border-radius: 10px;
+  padding: 10px;
+  margin-left: 5px;
+}
+
+li:hover, .current-page {
+  transition: 0.5s;
+  background: darkgray;
+}
