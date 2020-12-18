@@ -21,7 +21,7 @@ const CreateZone = (props) => {
     }
 
     try {
-      await Axios.post(`http://localhost:5000/api/zones`, { ...newZone, creator: props.user._id }, config);
+      await Axios.post(`https://sleepy-inlet-08384.herokuapp.com/api/zones`, { ...newZone, creator: props.user._id }, config);
       window.location = '/';
     } catch (error) {
       console.log(error);

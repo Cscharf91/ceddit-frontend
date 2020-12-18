@@ -46,7 +46,7 @@ const App = () => {
 
   const getZones = async () => {
     try {
-      const data = await Axios.get('http://localhost:5000/api/zones');
+      const data = await Axios.get('https://sleepy-inlet-08384.herokuapp.com/api/zones');
       const allZones = data.data;
       setZones([]);
       const newZones = [];
@@ -61,7 +61,7 @@ const App = () => {
 
   const getPosts = async () => {
     try {
-      const data = await Axios.get('http://localhost:5000/api/posts');
+      const data = await Axios.get('https://sleepy-inlet-08384.herokuapp.com/api/posts');
       setPosts(data.data);
       setCurrentPosts(data.data);
     } catch(err) {
@@ -90,7 +90,7 @@ const App = () => {
             'Content-Type': 'multipart/form-data'
           }
         }
-        const data = await Axios.post('http://localhost:5000/api/posts', formData, config)
+        const data = await Axios.post('https://sleepy-inlet-08384.herokuapp.com/api/posts', formData, config)
         window.location = `/${data.data._id}`;
       } catch(err) {
         console.log("err", err);
@@ -102,7 +102,7 @@ const App = () => {
             'auth-token': token
           }
         }
-        const data = await Axios.post('http://localhost:5000/api/posts/', { title: newPost.title, body: newPost.body, zone: newPost.zone, user }, config);
+        const data = await Axios.post('https://sleepy-inlet-08384.herokuapp.com/api/posts/', { title: newPost.title, body: newPost.body, zone: newPost.zone, user }, config);
         console.log(data);
         window.location = '/';
       } catch(err) {
@@ -114,7 +114,7 @@ const App = () => {
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
     try {
-      const data = await Axios.post('http://localhost:5000/api/users/login', login);
+      const data = await Axios.post('https://sleepy-inlet-08384.herokuapp.com/api/users/login', login);
       const currentUser = data.data.user;
       const currentToken = data.data.token;
       setUser(currentUser);
@@ -156,7 +156,7 @@ const App = () => {
         'auth-token': token
       }
     }
-    const data = await Axios.delete(`http://localhost:5000/api/posts/${post._id}`, config);
+    const data = await Axios.delete(`https://sleepy-inlet-08384.herokuapp.com/api/posts/${post._id}`, config);
     setPosts(posts.filter(current => current._id !== post._id))
     window.location ='/';
   }

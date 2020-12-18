@@ -30,7 +30,7 @@ const Posts = (props) => {
 
   const getZone = async () => {
     if (props.currentZone !== "all") {
-      const data = await Axios.get(`http://localhost:5000/api/zones/${props.currentZone}`)
+      const data = await Axios.get(`https://sleepy-inlet-08384.herokuapp.com/api/zones/${props.currentZone}`)
       setZone(data.data);
     } else {
       setZone({

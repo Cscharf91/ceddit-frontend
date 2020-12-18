@@ -11,9 +11,9 @@ const LogIn = (props) => {
   const handleSignUpSubmit = async (e) => {
     e.preventDefault();
     try {
-      const data = await Axios.post('http://localhost:5000/api/users/register', signUp);
+      const data = await Axios.post('https://sleepy-inlet-08384.herokuapp.com/api/users/register', signUp);
       if (data) {
-        const data = await Axios.post('http://localhost:5000/api/users/login', signUp);
+        const data = await Axios.post('https://sleepy-inlet-08384.herokuapp.com/api/users/login', signUp);
         const currentUser = data.data.user;
         const currentToken = data.data.token;
         props.setUser(currentUser);

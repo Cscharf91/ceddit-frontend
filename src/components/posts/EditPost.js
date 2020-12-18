@@ -12,7 +12,7 @@ const EditPost = (props) => {
 
   const getPostData = async () => {
     try {
-      const data = await Axios.get(`http://localhost:5000/api/posts/${props.match.params.id}`);
+      const data = await Axios.get(`https://sleepy-inlet-08384.herokuapp.com/api/posts/${props.match.params.id}`);
       setEditedPost({ title: data.data.title, body: data.data.body })
     } catch(err) {
       console.log(err);
@@ -28,7 +28,7 @@ const EditPost = (props) => {
           'auth-token': props.token
         }
       }
-      const data = await Axios.patch(`http://localhost:5000/api/posts/${props.match.params.id}`, { ...editedPost }, config);
+      const data = await Axios.patch(`https://sleepy-inlet-08384.herokuapp.com/api/posts/${props.match.params.id}`, { ...editedPost }, config);
       console.log(data);
       window.location = '/';
     } catch(err) {

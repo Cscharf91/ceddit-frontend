@@ -27,7 +27,7 @@ const Comment = (props) => {
   }, []);
 
   const getVotes = async () => {
-    const data = await Axios.get(`http://localhost:5000/api/votes/comments/${comment._id}`);
+    const data = await Axios.get(`https://sleepy-inlet-08384.herokuapp.com/api/votes/comments/${comment._id}`);
     const newVotes = data.data;
     let total = 1;
     // Checks if any votes are from current user. If so, store vote ID.
@@ -83,7 +83,7 @@ const Comment = (props) => {
         'auth-token': props.token
       }
     }
-    await Axios.delete(`http://localhost:5000/api/votes/${voteId}`, config);
+    await Axios.delete(`https://sleepy-inlet-08384.herokuapp.com/api/votes/${voteId}`, config);
   }
 
   const addVote = async (vote) => {
@@ -95,13 +95,13 @@ const Comment = (props) => {
         'auth-token': props.token
       }
     }
-    const data = await Axios.post(`http://localhost:5000/api/votes/`, newVote, config);
+    const data = await Axios.post(`https://sleepy-inlet-08384.herokuapp.com/api/votes/`, newVote, config);
     setVoteId(data.data._id);
   }
 
   const fetchUser = async () => {
     try {
-      const data = await Axios.get(`http://localhost:5000/api/users/${comment.username}`);
+      const data = await Axios.get(`https://sleepy-inlet-08384.herokuapp.com/api/users/${comment.username}`);
       setCommentUser(data.data.username);
     } catch(err) {
       console.log(err);
@@ -116,7 +116,7 @@ const Comment = (props) => {
       }
     }
     const comment = { ...newComment, username: props.user._id, parent: e.target.className }
-    const data = await Axios.post(`http://localhost:5000/api/comments`, comment, config);
+    const data = await Axios.post(`https://sleepy-inlet-08384.herokuapp.com/api/comments`, comment, config);
     // setComments([...comments, data.data]);
     setNewComment({ body: "" });
     // scrollToBottom();
@@ -143,7 +143,7 @@ const Comment = (props) => {
     const deletedComment = {
       body: "<deleted>"
     }
-    const data = await Axios.patch(`http://localhost:5000/api/comments/${comment._id}`, deletedComment, config)
+    const data = await Axios.patch(`https://sleepy-inlet-08384.herokuapp.com/api/comments/${comment._id}`, deletedComment, config)
     console.log(data);
     setCommentBody("<deleted>");
     console.log(comment.body);

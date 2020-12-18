@@ -31,7 +31,7 @@ const Post = (props) => {
   }, [post])
 
   const getVotes = async () => {
-    const data = await Axios.get(`http://localhost:5000/api/votes/posts/${post._id}`);
+    const data = await Axios.get(`https://sleepy-inlet-08384.herokuapp.com/api/votes/posts/${post._id}`);
     const newVotes = data.data;
     let total = 1;
     // Checks if any votes are from current user. If so, store vote ID.
@@ -87,7 +87,7 @@ const Post = (props) => {
         'auth-token': props.token
       }
     }
-    await Axios.delete(`http://localhost:5000/api/votes/${voteId}`, config);
+    await Axios.delete(`https://sleepy-inlet-08384.herokuapp.com/api/votes/${voteId}`, config);
   }
 
   const addVote = async (vote) => {
@@ -99,12 +99,12 @@ const Post = (props) => {
         'auth-token': props.token
       }
     }
-    const data = await Axios.post(`http://localhost:5000/api/votes/`, newVote, config);
+    const data = await Axios.post(`https://sleepy-inlet-08384.herokuapp.com/api/votes/`, newVote, config);
     setVoteId(data.data._id);
   }
   
   const getPost = async () => {
-    const data = await Axios.get(`http://localhost:5000/api/posts/${props.match.params.id}`);
+    const data = await Axios.get(`https://sleepy-inlet-08384.herokuapp.com/api/posts/${props.match.params.id}`);
     setPost(data.data);
     setComments(data.data.comments);
   }
@@ -117,7 +117,7 @@ const Post = (props) => {
       }
     }
     const comment = { ...newComment, username: props.user._id, post: e.target.className }
-    const data = await Axios.post(`http://localhost:5000/api/comments`, comment, config);
+    const data = await Axios.post(`https://sleepy-inlet-08384.herokuapp.com/api/comments`, comment, config);
     setComments([...comments, data.data]);
     setNewComment({ body: "" });
     scrollToBottom();

@@ -19,7 +19,7 @@ const PostDisplay = (props) => {
   }, [])
 
   const getVotes = async () => {
-    const data = await Axios.get(`http://localhost:5000/api/votes/posts/${post._id}`);
+    const data = await Axios.get(`https://sleepy-inlet-08384.herokuapp.com/api/votes/posts/${post._id}`);
     const newVotes = data.data;
     let total = 1;
     // Checks if any votes are from current user. If so, store vote ID.
@@ -75,7 +75,7 @@ const PostDisplay = (props) => {
         'auth-token': props.token
       }
     }
-    const data = await Axios.delete(`http://localhost:5000/api/votes/${voteId}`, config);
+    const data = await Axios.delete(`https://sleepy-inlet-08384.herokuapp.com/api/votes/${voteId}`, config);
   }
 
   const addVote = async (vote) => {
@@ -87,7 +87,7 @@ const PostDisplay = (props) => {
         'auth-token': props.token
       }
     }
-    const data = await Axios.post(`http://localhost:5000/api/votes/`, newVote, config);
+    const data = await Axios.post(`https://sleepy-inlet-08384.herokuapp.com/api/votes/`, newVote, config);
     setVoteId(data.data._id);
   }
 
