@@ -1,6 +1,6 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import Axios from 'axios';
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 import { Link } from 'react-router-dom';
 import { trackPromise } from 'react-promise-tracker';
 import Comment from './Comment';
@@ -14,6 +14,8 @@ const Post = (props) => {
   document.body.style.background = "#2e2f2f";
   const [post, setPost] = useState(null);
   const [comments, setComments] = useState([]);
+
+  const [newComment, setNewComment] = useState({ body: "" })
   
   const [votes, setVotes] = useState(0);
   const [voteId, setVoteId] = useState('');
@@ -30,12 +32,10 @@ const Post = (props) => {
 
   const getVotes = async () => {
     const data = await Axios.get(`http://localhost:5000/api/votes/posts/${post._id}`);
-    console.log('data for this post', data);
     const newVotes = data.data;
     let total = 1;
     // Checks if any votes are from current user. If so, store vote ID.
     newVotes.forEach(vote => {
-      console.log('total:', total, 'vote:', vote.vote);
       if (props.user && vote.user === props.user._id) {
         setVoteId(vote._id);
         vote.vote > 0 ? setUpvote('voted') : setDownvote('voted');
@@ -53,7 +53,6 @@ const Post = (props) => {
     } else {
       setUpvote('voted')
       if (downvote === 'voted') {
-        console.log('updating vote')
         setDownvote('');
         removeVote();
         setVotes(votes + 2);
@@ -72,7 +71,6 @@ const Post = (props) => {
     } else {
       setDownvote('voted')
       if (upvote === 'voted') {
-        console.log('updating vote');
         setUpvote('');
         removeVote();
         setVotes(votes - 2);
@@ -89,8 +87,7 @@ const Post = (props) => {
         'auth-token': props.token
       }
     }
-    const data = await Axios.delete(`http://localhost:5000/api/votes/${voteId}`, config);
-    console.log("delete data:", data);
+    await Axios.delete(`http://localhost:5000/api/votes/${voteId}`, config);
   }
 
   const addVote = async (vote) => {
@@ -104,18 +101,42 @@ const Post = (props) => {
     }
     const data = await Axios.post(`http://localhost:5000/api/votes/`, newVote, config);
     setVoteId(data.data._id);
-    console.log(data);
   }
   
   const getPost = async () => {
     const data = await Axios.get(`http://localhost:5000/api/posts/${props.match.params.id}`);
-    console.log("post data:", data.data);
     setPost(data.data);
     setComments(data.data.comments);
   }
+
+  const handleCommentSubmit = async (e) => {
+    e.preventDefault();
+    const config = {
+      headers: {
+        'auth-token': props.token
+      }
+    }
+    const comment = { ...newComment, username: props.user._id, post: e.target.className }
+    const data = await Axios.post(`http://localhost:5000/api/comments`, comment, config);
+    setComments([...comments, data.data]);
+    setNewComment({ body: "" });
+    scrollToBottom();
+  }
+
+  const handleCommentChange = (e) => {
+    setNewComment({ body: e.target.value })
+  }
+
   const commentList = comments.map((comment) => {
     return <Comment user={props.user} token={props.token} nested="0" comment={comment} />
   });
+
+  const scrollToBottom = () => {
+    messagesEnd.current.scrollIntoView({ behavior: "smooth" });
+  }
+
+  const messagesEnd = useRef("");
+  
 
   return (
     <div className="post-wrapper min-height">
@@ -145,8 +166,15 @@ const Post = (props) => {
         {post && props.user && props.user.email === post.user.email && <button className="post-btn" onClick={() => props.deletePost(post)}>Delete</button>}
         {post && props.user && props.user.email === post.user.email && <Link className="post-btn" to={`/edit/${post._id}`}>Edit</Link>}
         </div>
+        <div className="comment-response-wrapper">
+          {props.user && post && <form className={post._id} onSubmit={handleCommentSubmit}>
+            <textarea name="body" value={newComment.body} onChange={handleCommentChange}></textarea><br/>
+            <button className="post-btn" type="submit">Submit</button>
+          </form>}
+        </div>
         {commentList}
       </div>
+      <div ref={messagesEnd}></div>
     </div>
   );
 }

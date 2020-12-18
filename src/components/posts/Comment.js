@@ -8,6 +8,7 @@ const Comment = (props) => {
   const comment = props.comment;
   const [nestedComments, setNestedComments] = useState(null);
   const [commentUser, setCommentUser] = useState(null);
+  const [newComment, setNewComment] = useState({ body: "" });
   const nested = parseInt(props.nested);
   const [votes, setVotes] = useState(0);
   const [voteId, setVoteId] = useState('');
@@ -24,14 +25,11 @@ const Comment = (props) => {
   }, []);
 
   const getVotes = async () => {
-    console.log('comment Id: ', comment._id);
     const data = await Axios.get(`http://localhost:5000/api/votes/comments/${comment._id}`);
-    console.log('votes for this comment', data.data);
     const newVotes = data.data;
     let total = 1;
     // Checks if any votes are from current user. If so, store vote ID.
     newVotes.forEach(vote => {
-      console.log('total:', total, 'vote:', vote.vote);
       if (props.user && vote.user === props.user._id) {
         setVoteId(vote._id);
         vote.vote > 0 ? setUpvote('voted') : setDownvote('voted');
@@ -49,7 +47,6 @@ const Comment = (props) => {
     } else {
       setUpvote('voted')
       if (downvote === 'voted') {
-        console.log('updating vote')
         setDownvote('');
         removeVote();
         setVotes(votes + 2);
@@ -68,7 +65,6 @@ const Comment = (props) => {
     } else {
       setDownvote('voted')
       if (upvote === 'voted') {
-        console.log('updating vote');
         setUpvote('');
         removeVote();
         setVotes(votes - 2);
@@ -85,8 +81,7 @@ const Comment = (props) => {
         'auth-token': props.token
       }
     }
-    const data = await Axios.delete(`http://localhost:5000/api/votes/${voteId}`, config);
-    console.log("delete data:", data);
+    await Axios.delete(`http://localhost:5000/api/votes/${voteId}`, config);
   }
 
   const addVote = async (vote) => {
@@ -100,7 +95,6 @@ const Comment = (props) => {
     }
     const data = await Axios.post(`http://localhost:5000/api/votes/`, newVote, config);
     setVoteId(data.data._id);
-    console.log("created vote:", data.data);
   }
 
   const fetchUser = async () => {
@@ -110,6 +104,24 @@ const Comment = (props) => {
     } catch(err) {
       console.log(err);
     }
+  }
+
+  const handleCommentSubmit = async (e) => {
+    e.preventDefault();
+    const config = {
+      headers: {
+        'auth-token': props.token
+      }
+    }
+    const comment = { ...newComment, username: props.user._id, parent: e.target.className }
+    const data = await Axios.post(`http://localhost:5000/api/comments`, comment, config);
+    // setComments([...comments, data.data]);
+    setNewComment({ body: "" });
+    // scrollToBottom();
+  }
+
+  const handleCommentChange = (e) => {
+    setNewComment({ body: e.target.value })
   }
 
   return (
@@ -126,9 +138,20 @@ const Comment = (props) => {
             <p className="op-header-light under-user">2 days ago</p>
         </div>
       <p className="comment-body">{comment.body}</p>
+      <div className="comment-response-wrapper">
+        {props.user && nested < 7 && <form className={comment._id} onSubmit={handleCommentSubmit}>
+          <textarea name="body" value={newComment.body} onChange={handleCommentChange}></textarea><br/>
+          <button className="post-btn" type="submit">Submit</button>
+        </form>}
+      </div>
+        {commentUser === props.user.username &&
+        <div className="comment-actions-grid">
+          {/* <button className="comment-btn">Edit</button> */}
+          <button className="post-btn">Delete</button>
+        </div>}
       
       {nestedComments && nestedComments.map(currComment => {
-         return (<Comment user={props.user} token={props.token} key={comment._id} nested={nested + 1} comment={currComment} />)
+         return (<Comment user={props.user} token={props.token} nested={nested + 1} comment={currComment} />)
        })}
     </div>
   );

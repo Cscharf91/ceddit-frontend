@@ -24,7 +24,6 @@ const PostDisplay = (props) => {
     let total = 1;
     // Checks if any votes are from current user. If so, store vote ID.
     newVotes.forEach(vote => {
-      console.log('total:', total, 'vote:', vote.vote);
       if (props.user && vote.user === props.user._id) {
         setVoteId(vote._id);
         vote.vote > 0 ? setUpvote('voted') : setDownvote('voted');
@@ -42,7 +41,6 @@ const PostDisplay = (props) => {
     } else {
       setUpvote('voted')
       if (downvote === 'voted') {
-        console.log('updating vote')
         setDownvote('');
         removeVote();
         setVotes(votes + 2);
@@ -61,7 +59,6 @@ const PostDisplay = (props) => {
     } else {
       setDownvote('voted')
       if (upvote === 'voted') {
-        console.log('updating vote');
         setUpvote('');
         removeVote();
         setVotes(votes - 2);
@@ -79,7 +76,6 @@ const PostDisplay = (props) => {
       }
     }
     const data = await Axios.delete(`http://localhost:5000/api/votes/${voteId}`, config);
-    console.log("delete data:", data);
   }
 
   const addVote = async (vote) => {
@@ -93,7 +89,6 @@ const PostDisplay = (props) => {
     }
     const data = await Axios.post(`http://localhost:5000/api/votes/`, newVote, config);
     setVoteId(data.data._id);
-    console.log(data);
   }
 
   return (

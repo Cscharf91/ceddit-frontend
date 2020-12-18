@@ -58,7 +58,6 @@ const App = () => {
        const formData = new FormData(); 
      
        // Update the formData object 
-       console.log("selectedFile", selectedFile);
        formData.append( "image", selectedFile);
        formData.append( "user", JSON.stringify(user._id).slice(1, -1));
        formData.append( "zone", JSON.stringify(newPost.zone).slice(1, -1));
@@ -79,7 +78,6 @@ const App = () => {
         console.log("err", err);
       }
     } else {
-      console.log('no selected file');
       try {
         const config = {
           headers: {
@@ -94,22 +92,6 @@ const App = () => {
       }
     }
   }
-
-  // const uploadImage = async (base64EncodedImage) => {
-  //   try {
-  //     const config = {
-  //       headers: {
-  //         'auth-token': token,
-  //         'Content-Type': 'application/json'
-  //       }
-  //     }
-  //     const data = await Axios.post('http://localhost:5000/api/posts/', { ...newPost, image: JSON.stringify(base64EncodedImage), user }, config);
-  //     console.log(data);
-  //     window.location = '/';
-  //   } catch (err) {
-  //       console.error(err);
-  //   }
-  // }
 
   const handleLoginSubmit = async (e) => {
     e.preventDefault();
@@ -127,7 +109,6 @@ const App = () => {
   }
 
   const onChangeLogin = (e) => {
-    console.log(login, e.target.name, e.target.value);
     setLogin({
       ...login,
       [e.target.name]: e.target.value
@@ -139,8 +120,6 @@ const App = () => {
       ...newPost,
       [e.target.name]: e.target.value
     });
-    console.log(e.target.name, e.target.value);
-    console.log(newPost);
   }
 
   const handleFileInputChange = (e) => {
@@ -160,7 +139,6 @@ const App = () => {
       }
     }
     const data = await Axios.delete(`http://localhost:5000/api/posts/${post._id}`, config);
-    console.log(data);
     setPosts(posts.filter(current => current._id !== post._id))
     window.location ='/';
   }
