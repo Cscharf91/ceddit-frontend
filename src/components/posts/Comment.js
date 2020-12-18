@@ -42,25 +42,30 @@ const Comment = (props) => {
   }
 
   const handleUpvote = (e) => {
-    if (upvote === 'voted') {
-      setUpvote('')
-      removeVote();
-      setVotes(votes - 1);
-    } else {
-      setUpvote('voted')
-      if (downvote === 'voted') {
-        setDownvote('');
+    if (props.user) {
+      if (upvote === 'voted') {
+        setUpvote('')
         removeVote();
-        setVotes(votes + 2);
+        setVotes(votes - 1);
       } else {
-        setVotes(votes + 1);
+        setUpvote('voted')
+        if (downvote === 'voted') {
+          setDownvote('');
+          removeVote();
+          setVotes(votes + 2);
+        } else {
+          setVotes(votes + 1);
+        }
+        addVote(1);
       }
-      addVote(1);
+    } else {
+      alert('You must be logged in to vote on comments');
     }
   }
 
   const handleDownvote = (e) => {
-    if (downvote === 'voted') {
+    if (props.user) {
+      if (downvote === 'voted') {
       setDownvote('')
       removeVote();
       setVotes(votes + 1);
@@ -74,6 +79,9 @@ const Comment = (props) => {
         setVotes(votes - 1);
       }
       addVote(-1);
+    }
+    } else {
+      alert('You must be logged in to vote on comments');
     }
   }
 
