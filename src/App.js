@@ -102,8 +102,7 @@ const App = () => {
             'auth-token': token
           }
         }
-        const data = await Axios.post('https://sleepy-inlet-08384.herokuapp.com/api/posts/', { title: newPost.title, body: newPost.body, zone: newPost.zone, user }, config);
-        console.log(data);
+        await Axios.post('https://sleepy-inlet-08384.herokuapp.com/api/posts/', { title: newPost.title, body: newPost.body, zone: newPost.zone, user }, config);
         window.location = '/';
       } catch(err) {
         console.log(err);

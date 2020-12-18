@@ -21,7 +21,7 @@ const PostDisplay = (props) => {
   const getVotes = async () => {
     const data = await Axios.get(`https://sleepy-inlet-08384.herokuapp.com/api/votes/posts/${post._id}`);
     const newVotes = data.data;
-    let total = 1;
+    let total = 0;
     // Checks if any votes are from current user. If so, store vote ID.
     newVotes.forEach(vote => {
       if (props.user && vote.user === props.user._id) {

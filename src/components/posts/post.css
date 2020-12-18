@@ -171,7 +171,6 @@
   max-width: 450px;
   padding: 10px;
   margin-left: 55px;
-  border: 1px solid;
 }
 
 .voted {
@@ -295,7 +294,6 @@ li:hover, .current-page {
   .post-image {
     max-width: 300px;
     margin-left: 0;
-    border: none;
   }
   .image-container {
     max-width: 100%;
