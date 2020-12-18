@@ -9,28 +9,26 @@ const CreatePost = (props) => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  useEffect(() => {
-    console.log("here's the zones dude", props.zones);
-  }, [props.zones]);
-
   if (props.user) {
       return (
         <div className="post-wrapper">
           <form onSubmit={props.handlePostSubmit} className="post-form">
-            <br/><label>Title:</label>
-            <input type="text" name="title" value={props.newPost.title} onChange={props.onChangePost} /><br/><br/>
-            <select name="zone" onChange={props.onChangePost} value={props.newPost.zone}>
+            <label>Title:</label><br/>
+            <input className="create-title" type="text" name="title" value={props.newPost.title} onChange={props.onChangePost} /><br/><br/>
+            <label>Zone:</label><br/>
+            <select className="create-select" name="zone" onChange={props.onChangePost} value={props.newPost.zone}>
               {props.zones.length > 0 && props.zones.map(zone => {
                 return (<option value={zone._id}>{zone.name}</option>)
               })}
-            </select>
+            </select><br/><br/>
+            <label>Image (optional):</label><br/>
             <input 
               type="file"
               name="image"
               onChange={props.handleFileInputChange}
-              value={props.newPost.image} /><br />
-            <label>Body:</label>
-            <textarea name="body" value={props.newPost.body} onChange={props.onChangePost} /><br/><br/>
+              value={props.newPost.image} /><br/><br/>
+            <label>Body:</label><br />
+            <textarea placeholder="What's on your mind?" className="create-txtarea" name="body" value={props.newPost.body} onChange={props.onChangePost} /><br/><br/>
             <button>Submit Post</button>
           </form>
         </div>

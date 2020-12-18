@@ -4,7 +4,7 @@
   background: #ffffff;
   height: 50px;
   display: grid;
-  grid-template-columns: repeat(4, 1fr);
+  grid-template-columns: repeat(6, 1fr);
   justify-content: center;
   align-items: center;
   position: fixed;
@@ -35,8 +35,11 @@
   background: #ffffff;
   padding: 20px;
   width: 500px;
-  top: 20%;
+  top: 200px;
   left: 35%;
+  border: 1px solid black;
+  border-radius: 10px;
+  box-shadow: 5px 10px 15px #686868;
 }
 
 .login-form > * {

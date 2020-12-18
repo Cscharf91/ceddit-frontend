@@ -7,15 +7,18 @@ import Posts from "./components/posts/Posts";
 import CreatePost from "./components/posts/CreatePost";
 import EditPost from "./components/posts/EditPost";
 import Post from "./components/posts/Post";
+import CreateZone from "./components/zones/CreateZone";
 
 const App = () => {
   const [user, setUser] = useState(null);
   const [posts, setPosts] = useState([]);
+  const [currentPosts, setCurrentPosts] = useState([]);
   const [newPost, setNewPost] = useState({ title: "", body: "", zone: "5fda628d85f4ed0d156d3839" });
   const [selectedFile, setSelectedFile] = useState(null);
   const [token, setToken] = useState(null);
   const [login, setLogin] = useState({ email: "", password: "" });
   const [zones, setZones] = useState([]);
+  const [currentZone, setCurrentZone] = useState('all');
 
   useEffect(() => {
     trackPromise(getPosts());
@@ -25,6 +28,21 @@ const App = () => {
     if (currentUser) setUser(JSON.parse(currentUser));
     if (currentToken) setToken(currentToken);
   }, [])
+
+  const changeZoneSelect = async (e) => {
+    setCurrentZone(e.target.value);
+    const currentPosts = [];
+    if (e.target.value !== "all") {
+      posts.forEach(post => {
+        if (post.zone._id === e.target.value) {
+          currentPosts.push(post);
+        }
+      });
+      setCurrentPosts(currentPosts);
+    } else {
+      setCurrentPosts(posts);
+    }
+  }
 
   const getZones = async () => {
     try {
@@ -45,6 +63,7 @@ const App = () => {
     try {
       const data = await Axios.get('http://localhost:5000/api/posts');
       setPosts(data.data);
+      setCurrentPosts(data.data);
     } catch(err) {
       console.log(err);
     }
@@ -151,6 +170,9 @@ const App = () => {
         user={user}
         token={token}
         setUser={setUser}
+        zones={zones}
+        currentZone={currentZone}
+        changeZoneSelect={changeZoneSelect}
         setToken={setToken}
         handleLoginSubmit={handleLoginSubmit}
         onChangeLogin={onChangeLogin}
@@ -161,11 +183,11 @@ const App = () => {
           user={user}
           token={token}
           deletePost={deletePost}
-          posts={posts}
+          posts={currentPosts}
         />
       }
       />
-      <Route path="/create" exact
+      <Route path="/posts/create" exact
         render={props => <CreatePost {...props}
           handlePostSubmit={handlePostSubmit}
           onChangePost={onChangePost}
@@ -174,6 +196,13 @@ const App = () => {
           handleFileInputChange={handleFileInputChange}
           zones={zones}
           getZones={getZones}
+        />
+      }
+      />
+      <Route path="/zones/create" exact
+        render={props => <CreateZone {...props}
+          user={user}
+          token={token}
         />
       }
       />

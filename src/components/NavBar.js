@@ -14,7 +14,14 @@ const NavBar = (props) => {
         <h3 className="logo-text">Creddit</h3>
       </div></Link>
       <Link to="/"><HomeIcon /></Link>
-      {props.user && <Link to="/create">Create Post</Link>}
+      <select className="create-select" name="zone" onChange={props.changeZoneSelect} value={props.currentZone}>
+        <option value="all">All</option>
+        {props.zones.length > 0 && props.zones.map(zone => {
+          return (<option value={zone._id}>{zone.name}</option>)
+        })}
+      </select>
+      {props.user && <Link to="/posts/create">Create Post</Link>}
+      {props.user && <Link to="/zones/create">Create Zone</Link>}
       {props.user && <Link to="/" onClick={props.logOut}>Log Out</Link>}
       {!props.user && <LogIn 
         handleLoginSubmit={props.handleLoginSubmit}

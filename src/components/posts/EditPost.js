@@ -2,6 +2,7 @@ import Axios from 'axios';
 import React, { useEffect, useState } from 'react';
 
 const EditPost = (props) => {
+  document.body.style.background = "#dae0e6";
   const [editedPost, setEditedPost] = useState({ title: "", body: "" });
 
   useEffect(() => {
@@ -44,13 +45,15 @@ const EditPost = (props) => {
 
 
   return (
-    <form onSubmit={handlePostEdit} className="post-form">
-      <br/><label>Title:</label>
-      <input type="text" name="title" value={editedPost.title} onChange={onChangeEdit} /><br/><br/>
-      <label>Body:</label>
-      <textarea name="body" value={editedPost.body} onChange={onChangeEdit} /><br/><br/>
-      <button>Submit Post</button>
-    </form>
+    <div className="post-wrapper">
+      <form onSubmit={handlePostEdit} className="post-form">
+        <br/><label>Title:</label>
+        <input type="text" name="title" value={editedPost.title} onChange={onChangeEdit} /><br/><br/>
+        <label>Body:</label>
+        <textarea name="body" value={editedPost.body} onChange={onChangeEdit} /><br/><br/>
+        <button>Submit Post</button>
+      </form>
+    </div>
   );
 }
 
