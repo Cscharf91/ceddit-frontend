@@ -136,7 +136,9 @@ const Post = (props) => {
   }
 
   const commentList = comments.map((comment) => {
-    return <Comment user={props.user ? props.user : null} token={props.token} nested="0" comment={comment} />
+    if (!comment.parent) {
+      return <Comment user={props.user ? props.user : null} token={props.token} nested="0" post={post} comment={comment} />
+    }
   });
 
   const scrollToBottom = () => {
@@ -180,6 +182,7 @@ const Post = (props) => {
             <button className="post-btn" type="submit">Submit</button>
           </form>}
         </div>
+        {comments && <p>{comments.length} Comment{comments.length === 1 ? "" : "s"}</p>}
         {!props.user && <div className="divider"></div>}
         {commentList}
       </div>

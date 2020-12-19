@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import ArrowDropUpIcon from '@material-ui/icons/ArrowDropUp';
 import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import Axios from 'axios';
+import moment from 'moment';
 import { trackPromise } from 'react-promise-tracker';
 
 const Comment = (props) => {
@@ -123,8 +124,9 @@ const Comment = (props) => {
         'auth-token': props.token
       }
     }
-    const comment = { ...newComment, username: props.user._id, parent: e.target.className }
+    const comment = { ...newComment, username: props.user._id, post: props.post._id, parent: e.target.className }
     const data = await Axios.post(`https://sleepy-inlet-08384.herokuapp.com/api/comments`, comment, config);
+    console.log(data.data);
     setNestedComments(nestedComments ? [...nestedComments, data.data] : [data.data]);
     setNewComment({ body: "" });
     // scrollToBottom();
@@ -171,7 +173,7 @@ const Comment = (props) => {
       }
       {commentBody !== "<deleted>" && 
         <div className="op-header">
-            <p className="op-header-light under-user">2 days ago</p>
+            <p className="op-header-light under-user">{comment && moment(comment.date).format('MMMM Do YYYY')}</p>
         </div>
       }
       <p className="comment-body">{commentBody}</p>
@@ -192,7 +194,7 @@ const Comment = (props) => {
         </div>
       
       {nestedComments && nestedComments.map(currComment => {
-         return (<Comment user={props.user} token={props.token} nested={nested + 1} comment={currComment} />)
+         return (<Comment user={props.user} token={props.token} nested={nested + 1} post={props.post} comment={currComment} />)
        })}
     </div>
   );

@@ -120,7 +120,7 @@ const PostDisplay = (props) => {
         <Link to={`/${post._id}`}><img src={post.image} alt={`${post.title}`} className="post-image" /></Link>
         </div>
         }
-        <br/><Link to={`/${post._id}`}><button className="post-btn">Comments</button></Link>
+        <Link to={`/${post._id}`}><button className="post-btn">{post.comments.length} Comment{post.comments.length === 1 ? "" : "s"}</button></Link>
       </div>        
     </div>
   );
