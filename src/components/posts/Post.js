@@ -160,7 +160,7 @@ const Post = (props) => {
         <div className="post-op">
           <div className="op-header">
             <p className="sub-label">c/{post && post.zone ? post.zone.name : null}</p>
-            {post && <p className="op-header-light">Posted by {post.user.username}</p>} 
+            {post && post.user && <Link className="no-link" to={`/users/${[post.user._id]}`}><p className="op-header-light">Posted by {post.user.username}</p></Link>} 
             <p className="op-header-light">{post && moment(post.date).format('MMMM Do YYYY')}</p>
           </div>
             <div className="comment-vote">

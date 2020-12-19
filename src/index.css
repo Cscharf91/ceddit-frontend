@@ -14,3 +14,7 @@ html, body {
 .white-bg {
   background: white;
 }
+
+.no-link {
+  text-decoration: none;
+}
