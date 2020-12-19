@@ -5,25 +5,27 @@ This was made as a final project for The Odin Project. [Click here to view the g
 
 -Create Zones (akin to Subreddits): a little section of Creddit to discuss any topic or hobby (ex: pics, pets, fitness, gaming).
 
--Upvote and downvote comments.
-
--Optional image upload on posts.
+-Upvote and downvote comments
 
 -Nested comments
 
+-Optional image upload on posts
+
 -Pagination
+
+-User profiles
+
+-Mobile Responsive Design
 
 ## Todo:
 
--Embedded Youtube videos and links.
+-Embedded Youtube videos and links
 
--User profiles.
+-Notifications for comment responses
 
--Notifications for responses.
+-Sort comments by upvote count
 
--Mobile Responsive Design.
-
--Sort comments by upvote count.
+-Dark Mode
 
 ## Available Scripts
 
