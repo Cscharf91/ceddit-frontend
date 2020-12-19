@@ -182,8 +182,9 @@ const Post = (props) => {
             <button className="post-btn" type="submit">Submit</button>
           </form>}
         </div>
-        {comments && <p>{comments.length} Comment{comments.length === 1 ? "" : "s"}</p>}
+        {/* {!props.user && comments && <p>{comments.length} Comment{comments.length === 1 ? "" : "s"}</p>} */}
         {!props.user && <div className="divider"></div>}
+        {comments && <p>{comments.length} Comment{comments.length === 1 ? "" : "s"}</p>}
         {commentList}
       </div>
       <div ref={messagesEnd}></div>
