@@ -27,6 +27,9 @@ This was made as a final project for The Odin Project. [Click here to view the g
 
 -Dark Mode
 
+![screenshot](./images/creddit-screen1.png)
+![screenshot 2](./images/creddit-screen2.png)
+
 ## Available Scripts
 
 In the project directory, you can run:
