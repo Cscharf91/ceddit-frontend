@@ -320,7 +320,7 @@ li:hover, .current-page {
   .comment-user, .op-title {
     margin-left: 23px;
   }
-  
+
   .select-menu {
     width: 40%;
   }
@@ -336,8 +336,8 @@ li:hover, .current-page {
   }
 
   .navbar {
-    width: 80%;
-    margin-left: -40px;
+    padding: 10px;
+    font-size: 15px;
   }
 
   .image-container {
