@@ -17,6 +17,7 @@ const NavBar = (props) => {
       {props.user && <Link to="/posts/create">Create Post</Link>}
       {props.user && <Link to="/zones/create">Create Zone</Link>}
       {props.user && <Link to="/" onClick={props.logOut}>Log Out</Link>}
+      {props.user && <Link to={`/users/${props.user._id}`}>Profile</Link>}
       {!props.user && <LogIn 
         handleLoginSubmit={props.handleLoginSubmit}
         login={props.login}

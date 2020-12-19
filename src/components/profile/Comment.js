@@ -4,15 +4,12 @@ import ArrowDropDownIcon from '@material-ui/icons/ArrowDropDown';
 import Axios from 'axios';
 import moment from 'moment';
 import { trackPromise } from 'react-promise-tracker';
+import { Link } from 'react-router-dom';
 
 const Comment = (props) => {
   const comment = props.comment;
   const [commentBody, setCommentBody] = useState(comment.body);
-  const [nestedComments, setNestedComments] = useState(null);
   const [commentUser, setCommentUser] = useState(null);
-  const [newComment, setNewComment] = useState({ body: "" });
-  const [activeComment, setActiveComment] = useState(false);
-  const nested = parseInt(props.nested);
   const [votes, setVotes] = useState(0);
   const [voteId, setVoteId] = useState('');
   const [upvote, setUpvote] = useState('');
@@ -20,10 +17,6 @@ const Comment = (props) => {
 
   useEffect(() => {
     fetchUser();
-    const listComm = comment.children.length > 0 ? [...comment.children] : null;
-    if (listComm) {
-      setNestedComments(listComm);
-    }
     trackPromise(getVotes());
   }, []);
 
@@ -111,37 +104,10 @@ const Comment = (props) => {
   const fetchUser = async () => {
     try {
       const data = await Axios.get(`https://sleepy-inlet-08384.herokuapp.com/api/users/${comment.username}`);
-      setCommentUser(data.data.user.username);
+      setCommentUser(data.data.user);
     } catch(err) {
       console.log(err);
     }
-  }
-
-  const handleCommentSubmit = async (e) => {
-    e.preventDefault();
-    const config = {
-      headers: {
-        'auth-token': props.token
-      }
-    }
-    const comment = { ...newComment, username: props.user._id, post: props.post._id, parent: e.target.className }
-    const data = await Axios.post(`https://sleepy-inlet-08384.herokuapp.com/api/comments`, comment, config);
-    console.log(data.data);
-    setNestedComments(nestedComments ? [...nestedComments, data.data] : [data.data]);
-    setNewComment({ body: "" });
-    // scrollToBottom();
-  }
-
-  const handleCommentChange = (e) => {
-    setNewComment({ body: e.target.value })
-  }
-
-  const activateComment = () => {
-    setActiveComment(true);
-  }
-
-  const deactivateComment = () => {
-    setActiveComment(false);
   }
 
   const deleteComment = async () => {
@@ -153,10 +119,8 @@ const Comment = (props) => {
     const deletedComment = {
       body: "<deleted>"
     }
-    const data = await Axios.patch(`https://sleepy-inlet-08384.herokuapp.com/api/comments/${comment._id}`, deletedComment, config)
-    console.log(data);
+    await Axios.patch(`https://sleepy-inlet-08384.herokuapp.com/api/comments/${comment._id}`, deletedComment, config)
     setCommentBody("<deleted>");
-    console.log(comment.body);
   }
 
   return (
@@ -168,7 +132,7 @@ const Comment = (props) => {
           <p className="upvote-count">{votes}</p>
           <ArrowDropDownIcon onClick={handleDownvote} className={`vote-arrow row-3 ${downvote}`} fontSize="inherit" />
         </div>
-        <p className="comment-user">{commentUser}</p>
+        {commentUser && <Link to={`/users/${commentUser._id}`}><p className="comment-user">{commentUser.username}</p></Link>}
       </div>
       }
       {commentBody !== "<deleted>" && 
@@ -177,25 +141,11 @@ const Comment = (props) => {
         </div>
       }
       <p className="comment-body">{commentBody}</p>
-      <div className="comment-response-wrapper">
-        {props.user && activeComment && nested < 7 && <form className={comment._id} onSubmit={handleCommentSubmit}>
-          <textarea name="body" value={newComment.body} onChange={handleCommentChange}></textarea><br/>
-          <button className="post-btn" type="submit">Submit</button>
-          <button onClick={deactivateComment} className="post-btn">Cancel</button>
-        </form>}
-      </div>
       <div className="comment-actions-grid">
-        {props.user && commentUser === props.user.username && commentBody !== "<deleted>" &&
+        {props.user && commentUser && commentUser.username === props.user.username && commentBody !== "<deleted>" &&
           <button onClick={deleteComment} className="post-btn">Delete</button>
         }
-        {props.user && !activeComment && commentBody !== "<deleted>" && nested < 7 &&
-          <button onClick={activateComment} className="post-btn">Reply</button>
-        }
-        </div>
-      
-      {nestedComments && nestedComments.map(currComment => {
-         return (<Comment user={props.user} token={props.token} nested={nested + 1} post={props.post} comment={currComment} />)
-       })}
+      </div>
     </div>
   );
 }

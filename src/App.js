@@ -8,6 +8,7 @@ import CreatePost from "./components/posts/CreatePost";
 import EditPost from "./components/posts/EditPost";
 import Post from "./components/posts/Post";
 import CreateZone from "./components/zones/CreateZone";
+import Profile from "./components/profile/Profile";
 
 const App = () => {
   const [user, setUser] = useState(null);
@@ -177,11 +178,10 @@ const App = () => {
         render={props => <Posts {...props}
           user={user}
           token={token}
-          currentZone={currentZone}
           deletePost={deletePost}
+          currentZone={currentZone}
           posts={currentPosts}
           zones={zones}
-          currentZone={currentZone}
           changeZoneSelect={changeZoneSelect}
         />
       }
@@ -218,6 +218,13 @@ const App = () => {
         render={props => <EditPost {...props}
           token={token}
         />
+      }
+      />
+      <Route path="/users/:id" exact
+        render={props => <Profile {...props}
+        user={user}
+        token={token}
+      />
       }
       />
       </Switch>

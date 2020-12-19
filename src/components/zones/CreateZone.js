@@ -30,7 +30,10 @@ const CreateZone = (props) => {
 
   if (props.user) {
       return (
-        <div className="post-wrapper">
+        <div className="post-wrapper ">
+          <div className="create-and-profile-head">
+            <h3>Create Zone</h3>
+          </div>
           <form onSubmit={handleSubmit} className="post-form">
             <label>Name:</label><br/>
             <input className="create-title" type="text" name="name" value={newZone.name} onChange={onChange} /><br/><br/>
@@ -42,7 +45,7 @@ const CreateZone = (props) => {
     );
   } else {
     return (
-      <div>You need to be logged in.</div>
+      <div className="post-wrapper">You need to be logged in.</div>
     )
   }
 }

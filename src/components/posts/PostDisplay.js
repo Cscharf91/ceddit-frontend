@@ -103,8 +103,8 @@ const PostDisplay = (props) => {
     <div className="post-wrapper">
       <div className="post-op">
         <div className="op-header">
-          <p className="sub-label">c/{post.zone ? post.zone.name : null}</p>
-          {post && <p className="op-header-light">Posted by {post.user.username}</p>} 
+          {post.zone.name && <p className="sub-label">c/{post.zone.name}</p>}
+          {post && post.user.username && <p className="op-header-light">Posted by {post.user.username}</p>} 
           <p className="op-header-light">{moment(post.date).format('MMMM Do YYYY')}</p>
         </div>
         <div className="comment-vote">

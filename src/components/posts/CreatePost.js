@@ -12,6 +12,9 @@ const CreatePost = (props) => {
   if (props.user) {
       return (
         <div className="post-wrapper">
+          <div className="create-and-profile-head">
+            <h3>Create Post</h3>
+          </div>
           <form onSubmit={props.handlePostSubmit} className="post-form">
             <label>Title:</label><br/>
             <input className="create-title" type="text" name="title" value={props.newPost.title} onChange={props.onChangePost} /><br/><br/>
